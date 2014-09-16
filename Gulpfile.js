@@ -12,6 +12,7 @@ var paths = {
     'src/directives/directives.js',
     'src/directives/modal.js',
     'src/directives/overlay.js',
+    'src/morphManager.js',
     'src/morphAssist.js',
     'src/morph.js',
     'src/app.js'

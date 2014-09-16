@@ -470,6 +470,24 @@
 (function (angular){
   "use strict";
 
+  angular.module('morph.manager', [])
+  .factory('Manager', ['$window', function ($window) {
+    var stack = [];
+
+    angular.element($window).on("keydown", function(e) {
+      console.log(e);
+    });
+
+    return {
+      push: function(element) {
+        stack.push(element);
+      },
+    };
+  }]);
+})(angular);
+(function (angular){
+  "use strict";
+
   angular.module('morph.assist', [])
   .factory('Assist', [function () {
     var defaultStyles = {
@@ -533,9 +551,10 @@
 
   angular.module('morph', [
     'morph.transitions', 
-    'morph.assist'
+    'morph.assist',
+    'morph.manager'
   ])
-  .factory('Morph', ['Transitions', 'Assist', function (Transitions, Assist) {
+  .factory('Morph', ['Transitions', 'Assist', 'Manager', function (Transitions, Assist, Manager) {
 
     return function (transition, elements, settings) {
       var MorphableBoundingRect = settings.MorphableBoundingRect;
